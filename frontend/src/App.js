@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+//import Banner from './components/Banner';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import RepoList from './components/RepoList';
+import Footer from './components/Footer';
+import Estadisticas from './components/Estadisticas';
+import TopRepositories from './components/TopRepositories';
+
+import './App.css'; // Importa el fichero global de estilos
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetchingData();
-    /*
-    axios.get('http://localhost:5000/api/hello')
-      .then(response => {
-        setMessage(response.data.message);
-      })
-      .catch(error => {
-        console.error('Error al llamar a la API:', error);
-      });*/
-  }, []);
-
-  function fetchingData(){
-    fetch("http://localhost:5000/api/hello",{
-      method: "GET",
-      headers:{},
-    }).then((response)=> response.json()).then((data))
-  }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Frontend React</h1>
-        <p>{message}</p>
-      </header>
+    <div className="app-container">
+      <Header />
+      
+      <div className="main-content">
+        <Sidebar />
+        <div className="content-area">
+        <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/repositories" element={<RepoList />} />
+            <Route path="/estadisticas" element={<Estadisticas />} />
+            <Route path="/top-repositories" element={<TopRepositories />} />
+
+          </Routes>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
