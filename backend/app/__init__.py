@@ -31,4 +31,6 @@ def create_app():
 
 
     return app
+# Esto asegura que Gunicorn pueda encontrar la variable `app`
+app = create_app()
 
