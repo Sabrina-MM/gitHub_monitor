@@ -13,7 +13,7 @@ function Header() {
           <li>
           <Link to="/repositories">Repositorios</Link>
         </li>
-          <li><a href="/estadisticas">Estadísticas</a></li>
+          <li><Link to="/estadisticas">Estadísticas</Link></li>
           {/*<li><a href="/acerca-de">Acerca de</a></li>*/}
         </ul>
       </nav>
