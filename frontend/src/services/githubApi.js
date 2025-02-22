@@ -7,7 +7,7 @@ import axios from "axios";
  * @returns {Promise} - Promesa con la respuesta de la API.
  */
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "https://mi-backend.onrender.com";
+const API_BASE_URL = process.env.REACT_APP_API_URL;//https://github-monitor-zrh3.onrender.com
 
 export const searchRepositories = (query) => {
   if (!query) {
