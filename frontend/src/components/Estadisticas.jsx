@@ -19,7 +19,7 @@ function Estadisticas() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:5000/api/repositories')
+    axios.get('https://github-monitor-zrh3.onrender.com/api/repositories')
       .then(response => {
         const repos = response.data;
         const now = new Date();
