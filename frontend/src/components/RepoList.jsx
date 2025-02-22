@@ -16,7 +16,7 @@ function RepoList() {
   const fetchRepositories = () => {
     setLoading(true);
     setError(null);
-    axios.get('http://localhost:5000/api/repositories')
+    axios.get('https://github-monitor-zrh3.onrender.com/api/repositories')
       .then(response => {
         setRepos(response.data);
         setLoading(false);
