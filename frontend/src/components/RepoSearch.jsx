@@ -18,7 +18,7 @@ function RepoSearch({ onSearchResults }) {
         return false; // Se considera inactivo por estar marcado en la descripción
       }
     }
-    const updatedAt = new Date(repo.updated_at);
+    const updatedAt = new Date(repo);
     const now = new Date();
     const fourMonthsAgo = new Date();
     fourMonthsAgo.setMonth(now.getMonth() - 4);
