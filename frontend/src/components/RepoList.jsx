@@ -31,6 +31,16 @@ function RepoList() {
     fetchRepositories();
   }, []);
 
+    // Función para filtrar repositorios que contengan "obsolete" o "deprecated" en la descripción.
+    const filterObsolete = (repo) => {
+      if (!repo.description) return true;
+      const desc = repo.description.toLowerCase();
+      return !(desc.includes("obsolete") || desc.includes("deprecated"));
+    };
+  
+    // Aplicar el filtrado por descripción a todos los repositorios
+    let processedRepos = repos.filter(filterObsolete);
+
   // Se define el criterio de actividad:
   // - Activos: actualizados en los últimos 4 meses.
   // - Inactivos: actualizados hace más de 4 meses.
@@ -44,8 +54,8 @@ function RepoList() {
   } else if (filter === 'inactivos') {
     filteredRepos = repos.filter(repo => new Date(repo.updated_at) < fourMonthsAgo);
   } else if (filter === 'mas-recientes') {
-    // Ejemplo: ordenar descendente por fecha de actualización
-    filteredRepos = [...repos].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+   // Ordenar descendente por fecha de actualización
+   filteredRepos = [...processedRepos].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
   }
 
   return (
