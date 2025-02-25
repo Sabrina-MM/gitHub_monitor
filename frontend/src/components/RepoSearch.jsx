@@ -11,20 +11,20 @@ function RepoSearch({ onSearchResults }) {
   const [error, setError] = useState(null);
 
   // Función para determinar si un repositorio es activo (actualizado en los últimos 4 meses)
-  const isActiveRepo = (updatedAtStr) => {
-    const updatedAt = new Date(updatedAtStr);
+  const isActiveRepo = (repo) => {
+    if (repo.description) {
+      const desc = repo.description.toLowerCase();
+      if (desc.includes("obsolete") || desc.includes("deprecated")) {
+        return false; // Se considera inactivo por estar marcado en la descripción
+      }
+    }
+    const updatedAt = new Date(repo.updated_at);
     const now = new Date();
     const fourMonthsAgo = new Date();
     fourMonthsAgo.setMonth(now.getMonth() - 4);
     return updatedAt >= fourMonthsAgo;
   };
-   // Función para filtrar repositorios que no contengan "obsolete" o "deprecated" en la descripción.
-  // Se compara en minúsculas para ignorar mayúsculas/minúsculas.
-  const filterObsolete = (repo) => {
-    if (!repo.description) return true; // Si no hay descripción, se incluye
-    const desc = repo.description.toLowerCase();
-    return !(desc.includes("obsolete") || desc.includes("deprecated"));
-  };
+  
 
   const handleSearch = () => {
     if (!query) return; // Evitar búsqueda vacía
@@ -34,9 +34,8 @@ function RepoSearch({ onSearchResults }) {
       .then((response) => {
         // Se espera que la respuesta tenga 'items'
         const results = response.data.items;
-        // Filtrar los repositorios que contengan "obsolete" o "deprecated" en la descripción
-        const filteredResults = results.filter(filterObsolete);
-        setRepos(filteredResults);
+      
+        setRepos(results);
         if (onSearchResults) {
           onSearchResults(results);
         }
@@ -49,13 +48,11 @@ function RepoSearch({ onSearchResults }) {
   };
 
 
-  // Callback para recibir resultados de las pestañas "Temas destacados"
-  const handleTabResults = (results) => {
-     // Filtrar resultados de pestañas de la misma forma
-     const filteredResults = results.filter(filterObsolete);
-     setRepos(filteredResults);
-     if (onSearchResults) onSearchResults(filteredResults);
-  };
+ // Callback para recibir resultados de las pestañas "Temas destacados"
+ const handleTabResults = (results) => {
+  setRepos(results);
+  if (onSearchResults) onSearchResults(results);
+};
    
 
   return (
