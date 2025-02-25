@@ -18,7 +18,7 @@ function RepoSearch({ onSearchResults }) {
         return false; // Se considera inactivo por estar marcado en la descripción
       }
     }
-    const updatedAt = new Date(repo);
+    const updatedAt = new Date(repo.updated_at);
     const now = new Date();
     const fourMonthsAgo = new Date();
     fourMonthsAgo.setMonth(now.getMonth() - 4);
@@ -87,7 +87,7 @@ function RepoSearch({ onSearchResults }) {
             </thead>
             <tbody>
             {repos.map((repo) => {
-                const active = isActiveRepo(repo.updated_at);
+                const active = isActiveRepo(repo);
                 return (
                   <tr key={repo.id} className={active ? "active-card" : "inactive-card"}>
                     <td>{repo.name}</td>
