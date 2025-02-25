@@ -15,4 +15,3 @@ def get_connection():
         cursorclass=DictCursor
     )
     return connection
-#mysql://root:KgkSfZkVDffALNNEsWtlJQaoeIUgAWRx@metro.proxy.rlwy.net:12335/railway
