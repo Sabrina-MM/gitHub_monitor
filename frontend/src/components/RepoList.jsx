@@ -48,11 +48,11 @@ function RepoList() {
   const fourMonthsAgo = new Date();
   fourMonthsAgo.setMonth(now.getMonth() - 4);
 
-  let filteredRepos = repos;
+  let filteredRepos = processedRepos;
   if (filter === 'activos') {
-    filteredRepos = repos.filter(repo => new Date(repo.updated_at) >= fourMonthsAgo);
+    filteredRepos = processedRepos.filter(repo => new Date(repo.updated_at) >= fourMonthsAgo);
   } else if (filter === 'inactivos') {
-    filteredRepos = repos.filter(repo => new Date(repo.updated_at) < fourMonthsAgo);
+    filteredRepos = processedRepos.filter(repo => new Date(repo.updated_at) < fourMonthsAgo);
   } else if (filter === 'mas-recientes') {
    // Ordenar descendente por fecha de actualización
    filteredRepos = [...processedRepos].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
