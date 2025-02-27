@@ -4,7 +4,7 @@ import { searchRepositories } from '../services/githubApi';
 
 function RepoTabs({ onTabResults }) {
   // Lista de temas o categorías
-  const themes = ['kubernetes', 'UpCloudLtd', 'react', 'node', 'docker'];
+  const themes = ['UpCloudLtd', 'react', 'node', 'docker']; //'kubernetes', 
   const [activeTab, setActiveTab] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
