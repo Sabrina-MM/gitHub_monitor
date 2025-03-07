@@ -152,7 +152,6 @@ La aplicación se abrirá en `http://localhost:3000`.
 ## Notas
 
 ### Límites de la API de GitHub
-Si realizas muchas peticiones, recuerda que la API de GitHub tiene límites de uso. Considera utilizar autenticación con token si es necesario.
+Si se realizan muchas peticiones, tener en cuenta que la API de GitHub tiene límites de uso. Hay que considerar utilizar autenticación con token si es necesario.
 
-### Personalización
-Puedes adaptar el diseño, los criterios de filtrado y la estructura del proyecto según tus necesidades.
+
